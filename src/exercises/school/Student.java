@@ -27,6 +27,48 @@ public class Student {
         nextStudentId++;
     }
 
+    public void addGrade(int courseCredits, double grade) {
+        double currentQualityScore = this.gpa * this.numberOfCredits;
+        currentQualityScore += (courseCredits * grade);
+        this.numberOfCredits += courseCredits;
+        this.gpa = (currentQualityScore) / (this.numberOfCredits);
+    }
+
+    public String getGradeLevel() {
+        if(this.numberOfCredits >= 90) {
+            return "Senior";
+        }
+        if(this.numberOfCredits >= 60) {
+            return "Junior";
+        }
+        if (this.numberOfCredits >=30) {
+            return "Sophomore";
+        }
+        return "Freshman";
+    }
+
+    @Override
+    public String toString() {
+        return getName() + ":" + getGradeLevel() + ":" + getGpa();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() !=getClass()) {
+            return false;
+        }
+
+        Student theStudent = (Student) obj;
+        return theStudent.getStudentId() == getStudentId();
+    }
+
     public String getName() {
         return name;
     }
