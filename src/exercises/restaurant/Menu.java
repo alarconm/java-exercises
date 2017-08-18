@@ -1,8 +1,5 @@
 package exercises.restaurant;
 
-import sun.misc.resources.Messages_it;
-import sun.util.calendar.BaseCalendar;
-
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,23 +7,9 @@ import java.util.Date;
 
 public class Menu {
 
-    public static void main(String[] args){
-
-        MenuItem burger = new MenuItem("burger", 14.99, "tasty burger", "entree");
-        MenuItem chickenburger = new MenuItem("cburger", 14.99, "tasty cburger", "entree");
-        ArrayList<MenuItem> foodList = new ArrayList<MenuItem>();
-        foodList.add(burger);
-        foodList.add(chickenburger);
-        Menu aMenu = new Menu(false, foodList);
-
-
-        System.out.println(burger.getCategory());
-
-    }
-
     private Date lastUpdated;
     private boolean isNew = false;
-    private ArrayList menuItems;
+    private ArrayList<MenuItem> menuItems;
 
     public Menu(boolean isNew, ArrayList menuItems) {
         this(isNew, menuItems, Timestamp.valueOf(LocalDateTime.now()));
@@ -41,7 +24,27 @@ public class Menu {
     }
 
     public ArrayList getMenuItems() {
-        return menuItems; }
+        ArrayList<String> stringMenu = new ArrayList<>();
+
+        for( MenuItem item : menuItems) {
+            stringMenu.add(item.getItemName());
+
+        }
+        return stringMenu;
+    }
+
+    public void addMenuItems(MenuItem aItem) {
+        this.menuItems.add(aItem);
+    }
+
+    public void printMenuItem(MenuItem aitem) {
+        System.out.println(aitem);
+        this.lastUpdated = Timestamp.valueOf(LocalDateTime.now());
+    }
+
+    public void removeMenuItem(MenuItem aItem) {
+        this.menuItems.remove(aItem);
+    }
 
     public void setMenuItems(ArrayList menuItems) {
         this.menuItems = menuItems;
@@ -65,4 +68,5 @@ public class Menu {
         }
         return false;
     }
+
 }

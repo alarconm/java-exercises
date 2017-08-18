@@ -68,5 +68,21 @@ public class MenuItem {
         this.itemName = itemName;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != getClass()) {
+            return false;
+        }
+        MenuItem theItem = (MenuItem) obj;
+        return theItem.getItemName() == getItemName();
+
+    }
+
 
 }
