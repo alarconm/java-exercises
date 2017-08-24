@@ -1,23 +1,37 @@
 package exercises.Computer;
 
 
-import java.util.ArrayList;
+public class Computer extends AbstractEntity {
 
-public class Computer {
+    public static void main(String[] args) {
+        String[] components = {"CPU", "Videocard"};
+        Laptop macBook = new Laptop("Air", "OS10", components, "15inches", "Fullkey");
+        System.out.println(macBook);
+        System.out.println(macBook.getKeyBoard() + macBook.getSize() + macBook.getModel());
+        System.out.println(macBook.getId());
+        Laptop macBook2 = new Laptop("dilly", "Dillybar", components, "dilly", "dill");
+        System.out.println(macBook2.getId());
+    }
 
     private String model;
     private String operatingSystem;
-    private ArrayList components;
+    private String[] components;
+    private final int id;
 
-    public Computer(String amodel, String aoperatingSystem, ArrayList acomponents) {
+    public Computer(String amodel, String aoperatingSystem, String[] acomponents) {
 
         this.model = amodel;
         this.operatingSystem = aoperatingSystem;
         this.components = acomponents;
+        this.id = idGenerator();
     }
 
     public String getModel() {
         return model;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setModel(String model) {
@@ -32,11 +46,11 @@ public class Computer {
         this.operatingSystem = operatingSystem;
     }
 
-    public ArrayList getComponents() {
+    public String[] getComponents() {
         return components;
     }
 
-    public void setComponents(ArrayList components) {
+    public void setComponents(String[] components) {
         this.components = components;
     }
 
